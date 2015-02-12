@@ -1,9 +1,10 @@
 --John Youngblood
 --2/9/2015
 module Gigasecond where
-  import Data.Time.Clock
+import Data.Time.Clock
 
-  gigas = (10^9)
+gigas :: NominalDiffTime
+gigas = 1e9
 
-  fromDay :: UTCTime -> UTCTime
-  fromDay d = addUTCTime gigas d
+fromDay :: UTCTime -> UTCTime
+fromDay d = addUTCTime gigas d
