@@ -1,10 +1,15 @@
 --John Youngblood
 --2/9/2015
 module Bob where
-  import Data.Text (pack, toUpper, toLower)
-  responseFor :: String -> String
-  responseFor s
-    |words s == [] = "Fine. Be that way!"
-    |last s == '?' && (pack s == toLower (pack s)) = "Sure."
-    |pack s == toUpper (pack s) = "Whoa, chill out!"
-    |otherwise = "Whatever."
+import Data.Char (isLower, isLetter)
+
+noLower :: String -> Bool
+noLower "" = True
+noLower (c:s) |isLower c && isLetter c = False
+              |otherwise = noLower s
+
+responseFor :: String -> String
+responseFor s |words s == [] = "Fine. Be that way!"
+              |noLower s && any isLetter s = "Whoa, chill out!"
+              |last s == '?' = "Sure."
+              |otherwise = "Whatever."
