@@ -11,5 +11,5 @@ count n (d:dna) | not (elem n "GACT") = error "invalid nucleotide"
                 | elem n (d:dna) = 1 + count n (delete n (d:dna))
                 | otherwise = 0
 
-nucleotideCounts :: String -> [(Char, Int)]
-nucleotideCounts dna = fromList [(x,y) | x <- ['G','A','C','T'], y <- [count x dna]]
+nucleotideCounts :: String -> [(Char, Integer)]
+nucleotideCounts dna = [(x,y) | x <- ['A','T','G','C'], toInteger (y <- [count x dna])]
