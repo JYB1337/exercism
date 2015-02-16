@@ -8,7 +8,7 @@ data Sublist = Sublist | Superlist | Equal | Unequal deriving (Show, Eq, Ord)
 
 sublist :: Eq a => [a] -> [a] -> Sublist
 sublist x y
-  | (isInfixOf x y) && (length x == length y) = Equal
+  | x == y = Equal
   | isInfixOf x y = Sublist
   | isInfixOf y x = Superlist
   | otherwise = Unequal

@@ -7,4 +7,4 @@ gigas :: NominalDiffTime
 gigas = 1e9
 
 fromDay :: UTCTime -> UTCTime
-fromDay d = addUTCTime gigas d
+fromDay = addUTCTime gigas
