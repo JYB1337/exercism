@@ -7,7 +7,7 @@ areaCode :: String -> String
 areaCode n = take 3 (number n)
 
 number :: String -> String
-number n = validate [x | x <- n, isDigit x]
+number n = validate (filter isDigit n)
            where validate s | length s == 11 && head s == '1' = tail s
                             | length s == 10 = s
                             | otherwise = "0000000000"
