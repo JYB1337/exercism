@@ -1,19 +1,21 @@
 --John Youngblood
 --2/18/2015
-module School where
-import Data.List (sort, nub)
-type School = [(Int, String)]
---type School = [Student]
---data Student = {grade :: Int, name :: String}
+module School (School, empty, add, grade, sorted) where
+import Data.List (sort)
+import qualified Data.Map as M
+
+type School = (M.Map Int [String])
+
 empty :: School
-empty = []
-
 add :: Int -> String -> School -> School
-add g n m = (g, n) : m
-
 grade :: Int -> School -> [String]
-grade g s = sort [ b | (a,b) <- s , a == g]
-
 sorted :: School -> [(Int, [String])]
-sorted s = [ (a, grade a s) | a <- g]
-          where g = sort (nub [ fst x | x <- s])
+
+empty = School.empty
+
+add g n s = M.insertWith (++) g [n] s
+
+grade g s = maybe [] sort gl
+            where gl = M.lookup g s
+
+sorted s = M.assocs $ M.map sort s

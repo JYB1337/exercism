@@ -4,8 +4,8 @@ module Strain (keep, discard) where
 --Recursive Version
 keep :: (a -> Bool) -> [a] -> [a]
 keep _ [] = []
-keep p (x:xs) | p x = x:(keep p xs)
+keep p (x:xs) | p x = x:keep p xs
               | otherwise = keep p xs
 --Defined using keep
 discard :: (a -> Bool) -> [a] -> [a]
-discard p xs = keep (not .p) xs
+discard p = keep (not . p)
