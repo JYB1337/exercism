@@ -3,7 +3,7 @@
 var words = function (input)
 {
     var output = {};
-    var wordList = input.replace(/\s+/g, " ").split(" ");
+    var wordList = input.split(/\s+/);
     while (wordList.length > 0)
     {
         var temp = wordList.shift();
